@@ -4,7 +4,7 @@ public protocol URLSessionProtocol {
     func dataTask(
         with request: URLRequest,
         errorHandler: @escaping (ErrorRequest) -> Void,
-        resultHandler: @escaping (ResponseProtocol?) -> Void
+        resultHandler: @escaping (Data?) -> Void
     ) -> URLSessionDataTask
 }
 
@@ -13,7 +13,7 @@ extension URLSession: URLSessionProtocol {
     public func dataTask(
         with request: URLRequest,
         errorHandler: @escaping (ErrorRequest) -> Void,
-        resultHandler: @escaping (ResponseProtocol?) -> Void
+        resultHandler: @escaping (Data?) -> Void
     ) -> URLSessionDataTask {
         dataTask(with: request) { data, response, error in
             if let error = error {
@@ -25,7 +25,7 @@ extension URLSession: URLSessionProtocol {
                 }
                 switch info.statusCode {
                 case 200 ... 226:
-                    resultHandler(Response(data: data))
+                    resultHandler(data)
                 case 300 ... 520:
                     guard let status = HTTPStatusCode(rawValue: info.statusCode) else {
                         errorHandler(.emptyResponse)

@@ -15,6 +15,8 @@
 		8163EEBA26106CBB00CA949D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8163EEB926106CBB00CA949D /* Assets.xcassets */; };
 		8163EEBD26106CBB00CA949D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8163EEBC26106CBB00CA949D /* Preview Assets.xcassets */; };
 		8163EEC826106CBB00CA949D /* NetworkTestAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8163EEC726106CBB00CA949D /* NetworkTestAppTests.swift */; };
+		8182005C26274A270057B484 /* NetworkFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8163EE93261067DE00CA949D /* NetworkFramework.framework */; };
+		8182005D26274A270057B484 /* NetworkFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8163EE93261067DE00CA949D /* NetworkFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8198F089261869FE0016D326 /* HTTPStatusCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8198F088261869FE0016D326 /* HTTPStatusCodes.swift */; };
 		8198F09126186AD30016D326 /* RequestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8198F09026186AD30016D326 /* RequestProtocol.swift */; };
 		8198F09D26186C350016D326 /* GetRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8198F09C26186C350016D326 /* GetRequest.swift */; };
@@ -48,7 +50,28 @@
 			remoteGlobalIDString = 8163EEB226106CBA00CA949D;
 			remoteInfo = NetworkTestApp;
 		};
+		8182005E26274A270057B484 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8163EE8A261067DE00CA949D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8163EE92261067DE00CA949D;
+			remoteInfo = NetworkFramework;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		8182006026274A270057B484 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				8182005D26274A270057B484 /* NetworkFramework.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		8163EE93261067DE00CA949D /* NetworkFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NetworkFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -98,6 +121,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8182005C26274A270057B484 /* NetworkFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,6 +168,7 @@
 				8163EEB426106CBA00CA949D /* NetworkTestApp */,
 				8163EEC626106CBB00CA949D /* NetworkTestAppTests */,
 				8163EE94261067DE00CA949D /* Products */,
+				8182005B26274A270057B484 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -208,6 +233,13 @@
 				8163EEC926106CBB00CA949D /* Info.plist */,
 			);
 			path = NetworkTestAppTests;
+			sourceTree = "<group>";
+		};
+		8182005B26274A270057B484 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		8198F08F26186AC10016D326 /* Helpers */ = {
@@ -310,10 +342,12 @@
 				8163EEAF26106CBA00CA949D /* Sources */,
 				8163EEB026106CBA00CA949D /* Frameworks */,
 				8163EEB126106CBA00CA949D /* Resources */,
+				8182006026274A270057B484 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				8182005F26274A270057B484 /* PBXTargetDependency */,
 			);
 			name = NetworkTestApp;
 			productName = NetworkTestApp;
@@ -514,6 +548,11 @@
 			target = 8163EEB226106CBA00CA949D /* NetworkTestApp */;
 			targetProxy = 8163EECF26106CBB00CA949D /* PBXContainerItemProxy */;
 		};
+		8182005F26274A270057B484 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8163EE92261067DE00CA949D /* NetworkFramework */;
+			targetProxy = 8182005E26274A270057B484 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
@@ -569,7 +608,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -627,7 +666,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -651,6 +690,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = NetworkFramework/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -678,6 +718,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = NetworkFramework/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -740,7 +781,7 @@
 				DEVELOPMENT_TEAM = SQ7BQ44Y58;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = NetworkTestApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -762,7 +803,7 @@
 				DEVELOPMENT_TEAM = SQ7BQ44Y58;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = NetworkTestApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

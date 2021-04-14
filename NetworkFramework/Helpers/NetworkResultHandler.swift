@@ -1,6 +1,6 @@
 import Foundation
 
-public protocol NetworkResultHandler {
+public protocol NetworkResultHandler: AnyObject {
     func requestSuccessfulWithResult(_ data: Data?)
     func requestFaildWithError(_ error: ErrorRequest)
 }
