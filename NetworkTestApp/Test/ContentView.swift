@@ -8,6 +8,15 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    // MARK: - Lifecycle
+    
+    init() {
+        Test().testNetwork()
+    }
+    
+    // MARK: - Body
+    
     var body: some View {
         Text("Hello, world!")
             .padding()
