@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8149E69A262B10E100E59478 /* Encodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8149E699262B10E100E59478 /* Encodable.swift */; };
 		8163EE9D261067DF00CA949D /* NetworkFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8163EE93261067DE00CA949D /* NetworkFramework.framework */; };
 		8163EEA2261067DF00CA949D /* NetworkFrameworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8163EEA1261067DF00CA949D /* NetworkFrameworkTests.swift */; };
 		8163EEA4261067DF00CA949D /* NetworkFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 8163EE96261067DE00CA949D /* NetworkFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -17,6 +18,8 @@
 		8163EEC826106CBB00CA949D /* NetworkTestAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8163EEC726106CBB00CA949D /* NetworkTestAppTests.swift */; };
 		8182005C26274A270057B484 /* NetworkFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8163EE93261067DE00CA949D /* NetworkFramework.framework */; };
 		8182005D26274A270057B484 /* NetworkFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8163EE93261067DE00CA949D /* NetworkFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		819708FD262C393400F51749 /* EmptyRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819708FC262C393400F51749 /* EmptyRequest.swift */; };
+		81970903262C3E7E00F51749 /* NetworkRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81970902262C3E7E00F51749 /* NetworkRequestFactory.swift */; };
 		8198F089261869FE0016D326 /* HTTPStatusCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8198F088261869FE0016D326 /* HTTPStatusCodes.swift */; };
 		8198F09126186AD30016D326 /* RequestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8198F09026186AD30016D326 /* RequestProtocol.swift */; };
 		8198F09D26186C350016D326 /* GetRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8198F09C26186C350016D326 /* GetRequest.swift */; };
@@ -74,6 +77,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8149E699262B10E100E59478 /* Encodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Encodable.swift; sourceTree = "<group>"; };
 		8163EE93261067DE00CA949D /* NetworkFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NetworkFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8163EE96261067DE00CA949D /* NetworkFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkFramework.h; sourceTree = "<group>"; };
 		8163EE97261067DE00CA949D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -90,6 +94,8 @@
 		8163EEC726106CBB00CA949D /* NetworkTestAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTestAppTests.swift; sourceTree = "<group>"; };
 		8163EEC926106CBB00CA949D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8163EECE26106CBB00CA949D /* NetworkTestAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NetworkTestAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		819708FC262C393400F51749 /* EmptyRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyRequest.swift; sourceTree = "<group>"; };
+		81970902262C3E7E00F51749 /* NetworkRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequestFactory.swift; sourceTree = "<group>"; };
 		8198F088261869FE0016D326 /* HTTPStatusCodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPStatusCodes.swift; sourceTree = "<group>"; };
 		8198F09026186AD30016D326 /* RequestProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestProtocol.swift; sourceTree = "<group>"; };
 		8198F09C26186C350016D326 /* GetRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetRequest.swift; sourceTree = "<group>"; };
@@ -146,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				81F400D726232DFD00A8EBF4 /* URLSession.swift */,
+				8149E699262B10E100E59478 /* Encodable.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -156,6 +163,7 @@
 				8198F09026186AD30016D326 /* RequestProtocol.swift */,
 				8198F09C26186C350016D326 /* GetRequest.swift */,
 				8198F0A826186C6E0016D326 /* PostRequest.swift */,
+				819708FC262C393400F51749 /* EmptyRequest.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -255,6 +263,7 @@
 		8198F0B426186CA00016D326 /* NetworkFactory */ = {
 			isa = PBXGroup;
 			children = (
+				81970902262C3E7E00F51749 /* NetworkRequestFactory.swift */,
 			);
 			path = NetworkFactory;
 			sourceTree = "<group>";
@@ -487,6 +496,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				81F400EF2623323F00A8EBF4 /* Responce.swift in Sources */,
+				8149E69A262B10E100E59478 /* Encodable.swift in Sources */,
 				81F400DF26232E0E00A8EBF4 /* NetworkResultHandler.swift in Sources */,
 				8198F09D26186C350016D326 /* GetRequest.swift in Sources */,
 				8198F089261869FE0016D326 /* HTTPStatusCodes.swift in Sources */,
@@ -494,6 +504,8 @@
 				8198F0A926186C6E0016D326 /* PostRequest.swift in Sources */,
 				81F400E626232E2500A8EBF4 /* ErrorRequest.swift in Sources */,
 				8198F09126186AD30016D326 /* RequestProtocol.swift in Sources */,
+				81970903262C3E7E00F51749 /* NetworkRequestFactory.swift in Sources */,
+				819708FD262C393400F51749 /* EmptyRequest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

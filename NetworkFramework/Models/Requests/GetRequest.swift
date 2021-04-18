@@ -13,7 +13,7 @@ enum RequestType: String {
     case put = "PUT"
 }
 
-public protocol RequestParametersProtocol: Codable {}
+public protocol RequestParametersProtocol: Encodable {}
 
 public class GetRequest: RequestProtocol {
 
@@ -28,11 +28,12 @@ public class GetRequest: RequestProtocol {
 
     // MARK: - Lifecycle
 
-    public init?(
+    public init?<Parameters: RequestParametersProtocol>(
         url: URL,
         session: URLSessionProtocol,
-        parameters: RequestParametersProtocol? = nil,
-        resultHandler: NetworkResultHandler? = nil
+        parameters: Parameters? = nil,
+        resultHandler: NetworkResultHandler? = nil,
+        encoder: JSONEncoder = JSONEncoder()
     ) {
         self.session = session
         self.resultHandler = resultHandler
@@ -41,7 +42,7 @@ public class GetRequest: RequestProtocol {
         }
         
         if let parameters = parameters {
-            urlComponents.queryItems = []
+            urlComponents.queryItems = parameters.toQueryItem(with: encoder)
         }
         
        
