@@ -11,6 +11,7 @@ public protocol NetworkRequestFactoryProtocol {
     func get<T: RequestParametersProtocol>(
         url: URL,
         parameters: T,
+        headers: Headers?,
         resultHandler: NetworkResultHandler?
     ) -> RequestProtocol?
 
@@ -22,8 +23,25 @@ public protocol NetworkRequestFactoryProtocol {
 }
 
 public extension NetworkRequestFactoryProtocol {
+    func get<T: RequestParametersProtocol>(
+        url: URL,
+        parameters: T,
+        resultHandler: NetworkResultHandler?
+    ) -> RequestProtocol? {
+        get(
+            url: url,
+            parameters: parameters,
+            headers: nil,
+            resultHandler: resultHandler
+        )
+    }
+
     func get(url: URL, resultHandler: NetworkResultHandler?) -> RequestProtocol? {
-        get(url: url, parameters: EmptyRequestParameters(), resultHandler: resultHandler)
+        get(
+            url: url,
+            parameters: EmptyRequestParameters(),
+            resultHandler: resultHandler
+        )
     }
 }
 
@@ -44,17 +62,19 @@ public struct NetworkRequestFactory: NetworkRequestFactoryProtocol {
     public func get<T: RequestParametersProtocol>(
         url: URL,
         parameters: T,
+        headers: Headers?,
         resultHandler: NetworkResultHandler?
     ) -> RequestProtocol? {
         return GetRequest(
             url: url,
             session: session,
             parameters: parameters,
+            headers: headers,
             resultHandler: resultHandler
         )
     }
 
-    //TODO
+    // TODO:
     public func post<T: RequestParametersProtocol>(
         url: URL,
         parameters: T,

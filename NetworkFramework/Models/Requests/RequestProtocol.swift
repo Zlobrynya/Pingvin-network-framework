@@ -14,4 +14,5 @@ public protocol RequestProtocol {
     func send()
 }
 
+public typealias Headers = [String: String]
 

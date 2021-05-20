@@ -13,12 +13,10 @@ enum RequestType: String {
     case put = "PUT"
 }
 
-public protocol RequestParametersProtocol: Encodable {}
-
 public class GetRequest: RequestProtocol {
 
     // MARK: - Private properties
-
+    
     private let request: URLRequest
 
     // MARK: - External Dependencies
@@ -32,6 +30,7 @@ public class GetRequest: RequestProtocol {
         url: URL,
         session: URLSessionProtocol,
         parameters: Parameters? = nil,
+        headers: Headers? = nil,
         resultHandler: NetworkResultHandler? = nil,
         encoder: JSONEncoder = JSONEncoder()
     ) {
@@ -44,18 +43,16 @@ public class GetRequest: RequestProtocol {
         if let parameters = parameters {
             urlComponents.queryItems = parameters.toQueryItem(with: encoder)
         }
-        
-       
-//        var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true)
         guard let url = urlComponents.url else {
             return nil
         }
+        
         var request = URLRequest(url: url)
         request.httpMethod = RequestType.get.rawValue
+        headers?.forEach {
+            request.setValue($0.value, forHTTPHeaderField: $0.key)
+        }
         
-//        if let parameters = parameters {
-//            request.queryItems
-//        }
         self.request = request
     }
 
