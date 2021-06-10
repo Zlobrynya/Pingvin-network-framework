@@ -12,6 +12,8 @@ public protocol RequestProtocol {
     ///
     /// - Parameter <#Name Parameter#>: <#Parameter Description#>
     func send()
+    
+    func cancel()
 }
 
 public typealias Headers = [String: String]

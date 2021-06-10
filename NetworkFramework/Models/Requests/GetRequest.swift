@@ -18,6 +18,7 @@ public class GetRequest: RequestProtocol {
     // MARK: - Private properties
     
     private let request: URLRequest
+    private var task: URLSessionDataTask?
 
     // MARK: - External Dependencies
 
@@ -60,11 +61,15 @@ public class GetRequest: RequestProtocol {
 
     public func send() {
         let resultHandler = self.resultHandler
-        let task = session.dataTask(
+        task = session.dataTask(
             with: request,
             errorHandler: { resultHandler?.requestFaildWithError($0) },
             resultHandler: { resultHandler?.requestSuccessfulWithResult($0) }
         )
-        task.resume()
+        task?.resume()
+    }
+    
+    public func cancel() {
+        task?.cancel()
     }
 }

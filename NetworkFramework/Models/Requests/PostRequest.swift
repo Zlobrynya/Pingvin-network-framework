@@ -56,4 +56,8 @@ public struct PostRequest: RequestProtocol {
         )
         task.resume()
     }
+    
+    public func cancel() {
+        // TODO
+    }
 }
