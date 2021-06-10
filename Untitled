@@ -1,0 +1,61 @@
+{
+"meta": {
+        "status": "OK",
+        "message": null
+    },
+"data": {
+  "config": {
+    "iosMinAppVersion": "3.27.0",
+    "androidMinAppVersion": "3.27.0"
+  },
+  "number": "79774298694",
+  "abonentDate": "2018-05-11T13:56:37.000+0000",
+  "currentAbonentFee": {
+    "amount": 399,
+    "currency": "RUB"
+  },
+  "abonentFeePeriod": "month",
+  "balance": 399,
+  "tariffPackages": {
+    "internet": "500 Гб",
+    "sms": "250",
+    "min": "800"
+  },
+  "notifications": [
+    {
+      "type": "tariffStatus",
+      "info": "Тариф заблокирован"
+    }
+  ],
+  "roaming": {
+    "country": {
+      "id": "7254",
+      "name": "Куба",
+      "flag": "https://api.tele2.ru/countries/Италия@3x.png"
+    },
+    "rests": [
+      {
+        "type": "service",
+        "status": "active",
+        "rollover": false,
+        "limit": 200.00,
+        "remain": 197.33,
+        "uom": "mb",
+        "endDay": "2021-04-22T23:59:59.000+0300",
+        "giftPackage": false,
+        "service": {
+          "id": 95211741,
+          "name": "Интернет за границей c Tele2 и Visa",
+          "slogan": "",
+          "renew": false,
+          "renewDate": null,
+          "billingServiceStatus": "ACTIVE",
+          "packageDescription": null,
+          "startDate": "2021-04-22T10:46:59.000+0300",
+          "descriptionRemains": "на максимальной скорости"
+        }
+      }
+    ]
+  }
+}
+}
