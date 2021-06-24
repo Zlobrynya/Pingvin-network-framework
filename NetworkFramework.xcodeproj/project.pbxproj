@@ -28,7 +28,7 @@
 		8198F0BC26186E5F0016D326 /* TestViewModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8198F0BB26186E5F0016D326 /* TestViewModule.swift */; };
 		81F400D826232DFD00A8EBF4 /* URLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F400D726232DFD00A8EBF4 /* URLSession.swift */; };
 		81F400DF26232E0E00A8EBF4 /* NetworkResultHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F400DE26232E0E00A8EBF4 /* NetworkResultHandler.swift */; };
-		81F400E626232E2500A8EBF4 /* ErrorRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F400E526232E2500A8EBF4 /* ErrorRequest.swift */; };
+		81F400E626232E2500A8EBF4 /* NetworkingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F400E526232E2500A8EBF4 /* NetworkingError.swift */; };
 		81F400EF2623323F00A8EBF4 /* Responce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F400EE2623323F00A8EBF4 /* Responce.swift */; };
 /* End PBXBuildFile section */
 
@@ -105,7 +105,7 @@
 		8198F0BB26186E5F0016D326 /* TestViewModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewModule.swift; sourceTree = "<group>"; };
 		81F400D726232DFD00A8EBF4 /* URLSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSession.swift; sourceTree = "<group>"; };
 		81F400DE26232E0E00A8EBF4 /* NetworkResultHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkResultHandler.swift; sourceTree = "<group>"; };
-		81F400E526232E2500A8EBF4 /* ErrorRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorRequest.swift; sourceTree = "<group>"; };
+		81F400E526232E2500A8EBF4 /* NetworkingError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingError.swift; sourceTree = "<group>"; };
 		81F400EE2623323F00A8EBF4 /* Responce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Responce.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -264,7 +264,7 @@
 		8198F08F26186AC10016D326 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				81F400E526232E2500A8EBF4 /* ErrorRequest.swift */,
+				81F400E526232E2500A8EBF4 /* NetworkingError.swift */,
 				81F400DE26232E0E00A8EBF4 /* NetworkResultHandler.swift */,
 				8198F088261869FE0016D326 /* HTTPStatusCodes.swift */,
 			);
@@ -513,7 +513,7 @@
 				8198F089261869FE0016D326 /* HTTPStatusCodes.swift in Sources */,
 				81F400D826232DFD00A8EBF4 /* URLSession.swift in Sources */,
 				8198F0A926186C6E0016D326 /* PostRequest.swift in Sources */,
-				81F400E626232E2500A8EBF4 /* ErrorRequest.swift in Sources */,
+				81F400E626232E2500A8EBF4 /* NetworkingError.swift in Sources */,
 				8198F09126186AD30016D326 /* RequestProtocol.swift in Sources */,
 				818530D42656DBF20096FAB0 /* RequestParametersProtocol.swift in Sources */,
 				81970903262C3E7E00F51749 /* NetworkRequestFactory.swift in Sources */,
@@ -714,7 +714,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = NetworkFramework/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -742,7 +742,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = NetworkFramework/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -805,7 +805,7 @@
 				DEVELOPMENT_TEAM = SQ7BQ44Y58;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = NetworkTestApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -827,7 +827,7 @@
 				DEVELOPMENT_TEAM = SQ7BQ44Y58;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = NetworkTestApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

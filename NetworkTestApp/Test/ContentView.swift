@@ -12,7 +12,9 @@ struct ContentView: View {
     // MARK: - Lifecycle
     
     init() {
-        Test().testNetwork()
+        async {
+            await Test().testNetwork()
+        }
     }
     
     // MARK: - Body

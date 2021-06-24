@@ -13,13 +13,15 @@ class Test: NetworkResultHandler {
     var requst: GetRequest?
     let network: NetworkRequestFactoryProtocol = NetworkRequestFactory()
 
-    func testNetwork() {
+    func testNetwork() async {
         let mock = MockParameter()
         let url = URL(string: "https://animechan.vercel.app/api/quotes/anime")!
         let headers = ["Content-Type": "application/json"]
         let requst = network.get(url: url, parameters: mock, headers: headers, resultHandler: self)
         /// GetRequest(url: url, session: URLSession.shared, resultHandler: self)
-        requst?.send()
+        let data = try? await requst?.send()
+        debugPrint("❤️ data \(String(data: data ?? Data(), encoding: .utf8))")
+//        requst?.cancel()
     }
 
     func requestSuccessfulWithResult(_ data: Data?) {
@@ -27,7 +29,7 @@ class Test: NetworkResultHandler {
         debugPrint("❤️ requestSuccessfulWithResult \(String(data: data, encoding: .utf8))")
     }
 
-    func requestFaildWithError(_ error: ErrorRequest) {
+    func requestFaildWithError(_ error: NetworkingError) {
         debugPrint("❤️ requestFaildWithError \(error)")
     }
 }

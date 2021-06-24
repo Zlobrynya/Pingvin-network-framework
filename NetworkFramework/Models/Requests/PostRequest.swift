@@ -8,7 +8,10 @@
 import Foundation
 
 public struct PostRequest: RequestProtocol {
-
+    public func send() async throws -> Data {
+        return Data()
+    }
+    
     // MARK: - Private properties
     
     private let request: URLRequest
@@ -48,13 +51,13 @@ public struct PostRequest: RequestProtocol {
     // MARK: - Public functions
 
     public func send() {
-        let resultHandler = self.resultHandler
-        let task = session.dataTask(
-            with: request,
-            errorHandler: { resultHandler?.requestFaildWithError($0) },
-            resultHandler: { resultHandler?.requestSuccessfulWithResult($0) }
-        )
-        task.resume()
+//        let resultHandler = self.resultHandler
+//        let task = session.dataTask(
+//            with: request,
+//            errorHandler: { resultHandler?.requestFaildWithError($0) },
+//            resultHandler: { resultHandler?.requestSuccessfulWithResult($0) }
+//        )
+//        task.resume()
     }
     
     public func cancel() {

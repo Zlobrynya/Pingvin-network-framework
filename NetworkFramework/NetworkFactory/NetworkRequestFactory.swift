@@ -67,7 +67,7 @@ public struct NetworkRequestFactory: NetworkRequestFactoryProtocol {
     ) -> RequestProtocol? {
         return GetRequest(
             url: url,
-            session: session,
+            session: session as! URLSession,
             parameters: parameters,
             headers: headers,
             resultHandler: resultHandler
