@@ -1,6 +1,7 @@
 import Foundation
 
 public protocol URLSessionProtocol {
+    
     func data(for request: URLRequest, delegate: URLSessionTaskDelegate?) async throws -> Data
     func data(for request: URLRequest) async throws -> Data
 }

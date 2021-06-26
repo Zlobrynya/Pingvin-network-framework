@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8149B8EE26876679007AB018 /* RequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8149B8ED26876679007AB018 /* RequestType.swift */; };
 		8149E69A262B10E100E59478 /* Encodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8149E699262B10E100E59478 /* Encodable.swift */; };
 		8163EE9D261067DF00CA949D /* NetworkFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8163EE93261067DE00CA949D /* NetworkFramework.framework */; };
 		8163EEA2261067DF00CA949D /* NetworkFrameworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8163EEA1261067DF00CA949D /* NetworkFrameworkTests.swift */; };
@@ -27,7 +28,6 @@
 		8198F0A926186C6E0016D326 /* PostRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8198F0A826186C6E0016D326 /* PostRequest.swift */; };
 		8198F0BC26186E5F0016D326 /* TestViewModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8198F0BB26186E5F0016D326 /* TestViewModule.swift */; };
 		81F400D826232DFD00A8EBF4 /* URLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F400D726232DFD00A8EBF4 /* URLSession.swift */; };
-		81F400DF26232E0E00A8EBF4 /* NetworkResultHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F400DE26232E0E00A8EBF4 /* NetworkResultHandler.swift */; };
 		81F400E626232E2500A8EBF4 /* NetworkingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F400E526232E2500A8EBF4 /* NetworkingError.swift */; };
 		81F400EF2623323F00A8EBF4 /* Responce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F400EE2623323F00A8EBF4 /* Responce.swift */; };
 /* End PBXBuildFile section */
@@ -78,6 +78,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8149B8ED26876679007AB018 /* RequestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestType.swift; sourceTree = "<group>"; };
 		8149E699262B10E100E59478 /* Encodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Encodable.swift; sourceTree = "<group>"; };
 		8163EE93261067DE00CA949D /* NetworkFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NetworkFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8163EE96261067DE00CA949D /* NetworkFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkFramework.h; sourceTree = "<group>"; };
@@ -104,7 +105,6 @@
 		8198F0A826186C6E0016D326 /* PostRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRequest.swift; sourceTree = "<group>"; };
 		8198F0BB26186E5F0016D326 /* TestViewModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewModule.swift; sourceTree = "<group>"; };
 		81F400D726232DFD00A8EBF4 /* URLSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSession.swift; sourceTree = "<group>"; };
-		81F400DE26232E0E00A8EBF4 /* NetworkResultHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkResultHandler.swift; sourceTree = "<group>"; };
 		81F400E526232E2500A8EBF4 /* NetworkingError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingError.swift; sourceTree = "<group>"; };
 		81F400EE2623323F00A8EBF4 /* Responce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Responce.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -166,6 +166,7 @@
 				8198F09026186AD30016D326 /* RequestProtocol.swift */,
 				8198F09C26186C350016D326 /* GetRequest.swift */,
 				8198F0A826186C6E0016D326 /* PostRequest.swift */,
+				8149B8ED26876679007AB018 /* RequestType.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -265,7 +266,6 @@
 			isa = PBXGroup;
 			children = (
 				81F400E526232E2500A8EBF4 /* NetworkingError.swift */,
-				81F400DE26232E0E00A8EBF4 /* NetworkResultHandler.swift */,
 				8198F088261869FE0016D326 /* HTTPStatusCodes.swift */,
 			);
 			path = Helpers;
@@ -508,7 +508,7 @@
 			files = (
 				81F400EF2623323F00A8EBF4 /* Responce.swift in Sources */,
 				8149E69A262B10E100E59478 /* Encodable.swift in Sources */,
-				81F400DF26232E0E00A8EBF4 /* NetworkResultHandler.swift in Sources */,
+				8149B8EE26876679007AB018 /* RequestType.swift in Sources */,
 				8198F09D26186C350016D326 /* GetRequest.swift in Sources */,
 				8198F089261869FE0016D326 /* HTTPStatusCodes.swift in Sources */,
 				81F400D826232DFD00A8EBF4 /* URLSession.swift in Sources */,

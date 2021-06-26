@@ -7,19 +7,16 @@
 
 import Foundation
 
-public struct PostRequest: RequestProtocol {
-    public func send() async throws -> Data {
-        return Data()
-    }
-    
+public class PostRequest: RequestProtocol {
+ 
     // MARK: - Private properties
     
     private let request: URLRequest
+    private var task: Task.Handle<Data, Error>?
 
     // MARK: - External Dependencies
 
     private let session: URLSessionProtocol
-    private var resultHandler: NetworkResultHandler?
 
     // MARK: - Lifecycle
 
@@ -28,11 +25,9 @@ public struct PostRequest: RequestProtocol {
         session: URLSessionProtocol,
         parameters: Parameters? = nil,
         headers: Headers? = nil,
-        resultHandler: NetworkResultHandler? = nil,
         encoder: JSONEncoder = JSONEncoder()
     ) {
         self.session = session
-        self.resultHandler = resultHandler
         
         var request = URLRequest(url: url)
         request.httpMethod = RequestType.post.rawValue
@@ -44,23 +39,20 @@ public struct PostRequest: RequestProtocol {
             request.setValue($0.value, forHTTPHeaderField: $0.key)
         }
         
-        debugPrint("❤️ \(request.allHTTPHeaderFields)")
         self.request = request
     }
 
     // MARK: - Public functions
 
-    public func send() {
-//        let resultHandler = self.resultHandler
-//        let task = session.dataTask(
-//            with: request,
-//            errorHandler: { resultHandler?.requestFaildWithError($0) },
-//            resultHandler: { resultHandler?.requestSuccessfulWithResult($0) }
-//        )
-//        task.resume()
+    public func send() async throws -> Data {
+        task = async { () -> Data in
+            try await session.data(for: request)
+        }
+        guard let task = task else { throw NetworkingError.emptyResponse }
+        return try await task.get()
     }
     
     public func cancel() {
-        // TODO
+        task?.cancel()
     }
 }

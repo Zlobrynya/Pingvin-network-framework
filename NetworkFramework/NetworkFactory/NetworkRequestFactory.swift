@@ -8,40 +8,18 @@
 import Foundation
 
 public protocol NetworkRequestFactoryProtocol {
-    func get<T: RequestParametersProtocol>(
-        url: URL,
-        parameters: T,
-        headers: Headers?,
-        resultHandler: NetworkResultHandler?
-    ) -> RequestProtocol?
+    func get<T: RequestParametersProtocol>(url: URL, parameters: T, headers: Headers?) -> RequestProtocol?
 
-    func post<T: RequestParametersProtocol>(
-        url: URL,
-        parameters: T,
-        resultHandler: NetworkResultHandler?
-    ) -> RequestProtocol?
+    func post<T: RequestParametersProtocol>(url: URL, parameters: T) -> RequestProtocol?
 }
 
 public extension NetworkRequestFactoryProtocol {
-    func get<T: RequestParametersProtocol>(
-        url: URL,
-        parameters: T,
-        resultHandler: NetworkResultHandler?
-    ) -> RequestProtocol? {
-        get(
-            url: url,
-            parameters: parameters,
-            headers: nil,
-            resultHandler: resultHandler
-        )
+    func get<T: RequestParametersProtocol>(url: URL, parameters: T) -> RequestProtocol? {
+        get(url: url, parameters: parameters, headers: nil)
     }
 
-    func get(url: URL, resultHandler: NetworkResultHandler?) -> RequestProtocol? {
-        get(
-            url: url,
-            parameters: EmptyRequestParameters(),
-            resultHandler: resultHandler
-        )
+    func get(url: URL) -> RequestProtocol? {
+        get(url: url, parameters: EmptyRequestParameters())
     }
 }
 
@@ -62,23 +40,20 @@ public struct NetworkRequestFactory: NetworkRequestFactoryProtocol {
     public func get<T: RequestParametersProtocol>(
         url: URL,
         parameters: T,
-        headers: Headers?,
-        resultHandler: NetworkResultHandler?
+        headers: Headers?
     ) -> RequestProtocol? {
         return GetRequest(
             url: url,
             session: session as! URLSession,
             parameters: parameters,
-            headers: headers,
-            resultHandler: resultHandler
+            headers: headers
         )
     }
 
     // TODO:
     public func post<T: RequestParametersProtocol>(
         url: URL,
-        parameters: T,
-        resultHandler: NetworkResultHandler?
+        parameters: T
     ) -> RequestProtocol? {
         return nil
     }
