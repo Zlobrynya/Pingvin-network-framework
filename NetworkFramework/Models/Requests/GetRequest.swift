@@ -20,23 +20,23 @@ public class GetRequest: RequestProtocol {
 
     // MARK: - Lifecycle
 
-    public init?<Parameters: RequestParametersProtocol>(
+    public init<Parameters: RequestParametersProtocol>(
         url: URL,
         session: URLSessionProtocol,
         parameters: Parameters? = nil,
         headers: Headers? = nil,
         encoder: JSONEncoder = JSONEncoder()
-    ) {
+    ) throws {
         self.session = session
         guard var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true) else {
-            return nil
+            throw RequestError.wrongUrl
         }
 
         if let parameters = parameters {
             urlComponents.queryItems = parameters.toQueryItem(with: encoder)
         }
 
-        guard let url = urlComponents.url else { return nil }
+        guard let url = urlComponents.url else { throw RequestError.wrongUrl }
 
         var request = URLRequest(url: url)
         request.httpMethod = RequestType.get.rawValue

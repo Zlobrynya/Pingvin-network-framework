@@ -9,19 +9,14 @@ import SwiftUI
 
 struct ContentView: View {
     
-    // MARK: - Lifecycle
-    
-    init() {
-        async {
-            await Test().testNetwork()
-        }
-    }
-    
     // MARK: - Body
     
     var body: some View {
         Text("Hello, world!")
             .padding()
+            .onAppear {
+                 Test().testNetwork()
+            }
     }
 }
 

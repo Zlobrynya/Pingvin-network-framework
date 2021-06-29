@@ -8,18 +8,18 @@
 import Foundation
 
 public protocol NetworkRequestFactoryProtocol {
-    func get<T: RequestParametersProtocol>(url: URL, parameters: T, headers: Headers?) -> RequestProtocol?
+    func get<T: RequestParametersProtocol>(url: URL, parameters: T, headers: Headers?) throws -> RequestProtocol
 
     func post<T: RequestParametersProtocol>(url: URL, parameters: T) -> RequestProtocol?
 }
 
 public extension NetworkRequestFactoryProtocol {
-    func get<T: RequestParametersProtocol>(url: URL, parameters: T) -> RequestProtocol? {
-        get(url: url, parameters: parameters, headers: nil)
+    func get<T: RequestParametersProtocol>(url: URL, parameters: T) throws -> RequestProtocol? {
+        try get(url: url, parameters: parameters, headers: nil)
     }
 
-    func get(url: URL) -> RequestProtocol? {
-        get(url: url, parameters: EmptyRequestParameters())
+    func get(url: URL) throws -> RequestProtocol? {
+        try get(url: url, parameters: EmptyRequestParameters())
     }
 }
 
@@ -41,8 +41,8 @@ public struct NetworkRequestFactory: NetworkRequestFactoryProtocol {
         url: URL,
         parameters: T,
         headers: Headers?
-    ) -> RequestProtocol? {
-        return GetRequest(
+    ) throws -> RequestProtocol {
+        try GetRequest(
             url: url,
             session: session as! URLSession,
             parameters: parameters,
