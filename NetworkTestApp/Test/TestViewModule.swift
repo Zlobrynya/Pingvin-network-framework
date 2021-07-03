@@ -20,7 +20,12 @@ class Test {
         let networkService = NetworkService()
         async {
             do {
-                let obj = try await networkService.get(forModel: Response.self, forUrl: url, withParameters: mock)
+                let obj = try await networkService.get(
+                    forModel: [Response].self,
+                    forUrl: url,
+                    withParameters: mock,
+                    andHeaders: headers
+                )
                 debugPrint("❤️ obj \(obj)")
             } catch {
                 debugPrint("❤️ error \(error)")

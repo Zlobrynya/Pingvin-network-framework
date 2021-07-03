@@ -8,27 +8,47 @@
 import Foundation
 
 public protocol NetworkServiceProtocol {
-
     func get<T: Decodable, Parameters: RequestParametersProtocol>(
-        forModel: T.Type,
+        forModel model: T.Type,
         forUrl url: URL,
-        withParameters parameters: Parameters,
+        withParameters parameters: Parameters?,
+        andHeaders headers: Headers?
+    ) async throws -> T?
+    
+    func post<T: Decodable, Parameters: RequestParametersProtocol>(
+        forModel model: T.Type,
+        forUrl url: URL,
+        withBodyParameters parameters: Parameters?,
+        withQueryParameters parameters: Parameters?,
         andHeaders headers: Headers?
     ) async throws -> T?
 }
 
 public extension NetworkServiceProtocol {
-
+    
     func get<T: Decodable, Parameters: RequestParametersProtocol>(
         forModel model: T.Type,
         forUrl url: URL,
-        withParameters parameters: Parameters
+        withParameters parameters: Parameters? = nil,
+        andHeaders headers: Headers? = nil
     ) async throws -> T? {
-        try await get(forModel: model, forUrl: url, withParameters: parameters, andHeaders: nil)
+        try await get(forModel: model, forUrl: url, withParameters: parameters, andHeaders: headers)
     }
 
-    func get<T: Decodable>(forModel model: T.Type,forUrl url: URL) async throws -> T?{
-        try await get(forModel: model, forUrl: url, withParameters: EmptyRequestParameters(), andHeaders: nil)
+    func post<T: Decodable, Parameters: RequestParametersProtocol>(
+        forModel model: T.Type,
+        forUrl url: URL,
+        withBodyParameters bodyParameters: Parameters? = nil,
+        withQueryParameters parameters: Parameters? = nil,
+        andHeaders headers: Headers? = nil
+    ) async throws -> T? {
+        try await post(
+            forModel: model,
+            forUrl: url,
+            withBodyParameters: bodyParameters,
+            withQueryParameters: parameters,
+            andHeaders: headers
+        )
     }
 }
 
@@ -54,7 +74,7 @@ public struct NetworkService: NetworkServiceProtocol {
     public func get<T: Decodable, Parameters: RequestParametersProtocol>(
         forModel model: T.Type,
         forUrl url: URL,
-        withParameters parameters: Parameters,
+        withParameters parameters: Parameters?,
         andHeaders headers: Headers?
     ) async throws -> T? {
         let request = try networkFactory.get(url: url, parameters: parameters, headers: headers)
@@ -62,4 +82,23 @@ public struct NetworkService: NetworkServiceProtocol {
         let object = try jsonDecoder.decode(model, from: data)
         return object
     }
+    
+    public func post<T: Decodable, Parameters: RequestParametersProtocol>(
+        forModel model: T.Type,
+        forUrl url: URL,
+        withBodyParameters bodyParameters: Parameters?,
+        withQueryParameters queryParameters: Parameters?,
+        andHeaders headers: Headers?
+    ) async throws -> T? {
+        let request = try networkFactory.post(
+            url: url,
+            withBodyParameters: bodyParameters,
+            withQueryParameters: queryParameters,
+            andHeaders: headers
+        )
+        let data = try await request.send()
+        let object = try jsonDecoder.decode(model, from: data)
+        return object
+    }
+ 
 }

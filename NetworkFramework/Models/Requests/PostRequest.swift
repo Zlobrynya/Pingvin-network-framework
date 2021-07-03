@@ -20,24 +20,32 @@ public class PostRequest: RequestProtocol {
 
     // MARK: - Lifecycle
 
-    public init?<Parameters: RequestParametersProtocol>(
+    public init<Parameters: RequestParametersProtocol>(
         url: URL,
         session: URLSessionProtocol,
-        parameters: Parameters? = nil,
+        bodyParameters: Parameters? = nil,
+        queryParameters: Parameters? = nil,
         headers: Headers? = nil,
         encoder: JSONEncoder = JSONEncoder()
-    ) {
+    ) throws {
         self.session = session
+        
+        guard var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true)
+        else { throw NetworkingError.wrongUrl }
+
+        if let parameters = queryParameters {
+            urlComponents.queryItems = parameters.toQueryItem(with: encoder)
+        }
+
+        guard let url = urlComponents.url else { throw NetworkingError.wrongUrl }
         
         var request = URLRequest(url: url)
         request.httpMethod = RequestType.post.rawValue
-        if let parameters = parameters {
-            request.httpBody = try? encoder.encode(parameters)
+        if let parameters = bodyParameters {
+            request.httpBody = try encoder.encode(parameters)
         }
             
-        headers?.forEach {
-            request.setValue($0.value, forHTTPHeaderField: $0.key)
-        }
+        headers?.forEach { request.setValue($0.value, forHTTPHeaderField: $0.key) }
         
         self.request = request
     }

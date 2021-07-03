@@ -8,20 +8,16 @@
 import Foundation
 
 public protocol NetworkRequestFactoryProtocol {
-    func get<T: RequestParametersProtocol>(url: URL, parameters: T, headers: Headers?) throws -> RequestProtocol
+    func get<T: RequestParametersProtocol>(url: URL, parameters: T?, headers: Headers?) throws -> RequestProtocol
 
-    func post<T: RequestParametersProtocol>(url: URL, parameters: T) -> RequestProtocol?
+    func post<T: RequestParametersProtocol>(
+        url: URL,
+        withBodyParameters bodyParameters: T?,
+        withQueryParameters queryParameters: T?,
+        andHeaders headers: Headers?
+    ) throws -> RequestProtocol
 }
 
-public extension NetworkRequestFactoryProtocol {
-    func get<T: RequestParametersProtocol>(url: URL, parameters: T) throws -> RequestProtocol? {
-        try get(url: url, parameters: parameters, headers: nil)
-    }
-
-    func get(url: URL) throws -> RequestProtocol? {
-        try get(url: url, parameters: EmptyRequestParameters())
-    }
-}
 
 public struct NetworkRequestFactory: NetworkRequestFactoryProtocol {
 
@@ -39,22 +35,29 @@ public struct NetworkRequestFactory: NetworkRequestFactoryProtocol {
 
     public func get<T: RequestParametersProtocol>(
         url: URL,
-        parameters: T,
+        parameters: T?,
         headers: Headers?
     ) throws -> RequestProtocol {
         try GetRequest(
             url: url,
-            session: session as! URLSession,
+            session: session,
             parameters: parameters,
             headers: headers
         )
     }
 
-    // TODO:
     public func post<T: RequestParametersProtocol>(
         url: URL,
-        parameters: T
-    ) -> RequestProtocol? {
-        return nil
+        withBodyParameters bodyParameters: T?,
+        withQueryParameters queryParameters: T?,
+        andHeaders headers: Headers?
+    ) throws -> RequestProtocol {
+        try PostRequest(
+            url: url,
+            session: session,
+            bodyParameters: bodyParameters,
+            queryParameters: queryParameters,
+            headers: headers
+        )
     }
 }

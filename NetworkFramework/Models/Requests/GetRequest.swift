@@ -28,15 +28,14 @@ public class GetRequest: RequestProtocol {
         encoder: JSONEncoder = JSONEncoder()
     ) throws {
         self.session = session
-        guard var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true) else {
-            throw RequestError.wrongUrl
-        }
+        guard var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true)
+        else { throw NetworkingError.wrongUrl }
 
         if let parameters = parameters {
             urlComponents.queryItems = parameters.toQueryItem(with: encoder)
         }
 
-        guard let url = urlComponents.url else { throw RequestError.wrongUrl }
+        guard let url = urlComponents.url else { throw NetworkingError.wrongUrl }
 
         var request = URLRequest(url: url)
         request.httpMethod = RequestType.get.rawValue
