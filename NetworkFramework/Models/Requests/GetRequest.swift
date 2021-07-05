@@ -31,6 +31,7 @@ public class GetRequest: RequestProtocol {
         guard var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true)
         else { throw NetworkingError.wrongUrl }
 
+        parameters?.test()
         if let parameters = parameters {
             urlComponents.queryItems = parameters.toQueryItem(with: encoder)
         }

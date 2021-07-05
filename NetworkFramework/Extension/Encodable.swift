@@ -12,7 +12,9 @@ extension Encodable {
     func toQueryItem(with encoder: JSONEncoder) -> [URLQueryItem]? {
         guard let dictionary = asDictionary(with: encoder) else { return nil }
         return dictionary
-            .compactMapValues { String(describing: $0) }
+            .compactMapValues {
+                return String(describing: $0)
+            }
             .map { URLQueryItem(name: $0.key, value: $0.value) }
     }
 
