@@ -24,16 +24,14 @@ public class GetRequest: RequestProtocol {
         url: URL,
         session: URLSessionProtocol,
         parameters: Parameters? = nil,
-        headers: Headers? = nil,
-        encoder: JSONEncoder = JSONEncoder()
+        headers: Headers? = nil
     ) throws {
         self.session = session
         guard var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true)
         else { throw NetworkingError.wrongUrl }
 
-        parameters?.test()
         if let parameters = parameters {
-            urlComponents.queryItems = parameters.toQueryItem(with: encoder)
+            urlComponents.queryItems = parameters.toQueryItem()
         }
 
         guard let url = urlComponents.url else { throw NetworkingError.wrongUrl }

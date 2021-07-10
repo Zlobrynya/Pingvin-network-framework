@@ -34,7 +34,7 @@ public class PostRequest: RequestProtocol {
         else { throw NetworkingError.wrongUrl }
 
         if let parameters = queryParameters {
-            urlComponents.queryItems = parameters.toQueryItem(with: encoder)
+            urlComponents.queryItems = parameters.toQueryItem()
         }
 
         guard let url = urlComponents.url else { throw NetworkingError.wrongUrl }

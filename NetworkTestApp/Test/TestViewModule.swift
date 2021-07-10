@@ -26,9 +26,9 @@ class Test {
                     withParameters: mock,
                     andHeaders: headers
                 )
-//                debugPrint("❤️ obj \(obj)")
+                debugPrint("❤️ obj \(obj)")
             } catch {
-//                debugPrint("❤️ error \(error)")
+                debugPrint("❤️ error \(error)")
             }
         }
 
@@ -40,10 +40,10 @@ class Test {
 }
 
 struct MockParameter: RequestParametersProtocol {
-    var caseType: CaseTypes = .camelCase
+    static var caseType: CaseTypes = .kebabCase
     
     let title = "naruto"
-    let key = Test()
+    let keyTest = Test()
     
     struct Test: Encodable {
         let testIn = "testIn"
