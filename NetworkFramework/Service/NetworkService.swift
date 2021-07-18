@@ -51,7 +51,7 @@ public extension NetworkServiceProtocol {
         try await get(forModel: model, forUrl: url, withParameters: EmptyParameters(), andHeaders: headers)
     }
 
-    func get(forUrl url: URL, andHeaders headers: Headers?) async throws -> Data? {
+    func get(forUrl url: URL, andHeaders headers: Headers? = nil) async throws -> Data? {
         try await get(forUrl: url, withParameters: EmptyParameters(), andHeaders: headers)
     }
 
