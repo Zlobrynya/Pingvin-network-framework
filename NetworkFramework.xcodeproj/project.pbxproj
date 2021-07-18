@@ -32,6 +32,7 @@
 		81F400D826232DFD00A8EBF4 /* URLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F400D726232DFD00A8EBF4 /* URLSession.swift */; };
 		81F400E626232E2500A8EBF4 /* NetworkingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F400E526232E2500A8EBF4 /* NetworkingError.swift */; };
 		81F400EF2623323F00A8EBF4 /* Responce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F400EE2623323F00A8EBF4 /* Responce.swift */; };
+		81FA871C26A43BF9006AD18E /* EmptyParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FA871B26A43BF9006AD18E /* EmptyParameters.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +112,7 @@
 		81F400D726232DFD00A8EBF4 /* URLSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSession.swift; sourceTree = "<group>"; };
 		81F400E526232E2500A8EBF4 /* NetworkingError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingError.swift; sourceTree = "<group>"; };
 		81F400EE2623323F00A8EBF4 /* Responce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Responce.swift; sourceTree = "<group>"; };
+		81FA871B26A43BF9006AD18E /* EmptyParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyParameters.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -272,6 +274,7 @@
 			isa = PBXGroup;
 			children = (
 				818530D32656DBF20096FAB0 /* RequestParametersProtocol.swift */,
+				81FA871B26A43BF9006AD18E /* EmptyParameters.swift */,
 			);
 			path = Parameters;
 			sourceTree = "<group>";
@@ -530,6 +533,7 @@
 				81F400E626232E2500A8EBF4 /* NetworkingError.swift in Sources */,
 				8198F09126186AD30016D326 /* RequestProtocol.swift in Sources */,
 				818530D42656DBF20096FAB0 /* RequestParametersProtocol.swift in Sources */,
+				81FA871C26A43BF9006AD18E /* EmptyParameters.swift in Sources */,
 				8197559526936FF30018F7F3 /* Mirror.swift in Sources */,
 				81CA9CE6269A12CA00C88B92 /* String.swift in Sources */,
 				81970903262C3E7E00F51749 /* NetworkRequestFactory.swift in Sources */,

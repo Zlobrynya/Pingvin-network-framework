@@ -10,10 +10,10 @@ import Foundation
 public protocol NetworkRequestFactoryProtocol {
     func get<T: RequestParametersProtocol>(url: URL, parameters: T?, headers: Headers?) throws -> RequestProtocol
 
-    func post<T: RequestParametersProtocol>(
+    func post<BParameters: RequestParametersProtocol, QParameters: RequestParametersProtocol>(
         url: URL,
-        withBodyParameters bodyParameters: T?,
-        withQueryParameters queryParameters: T?,
+        withBodyParameters bodyParameters: BParameters?,
+        withQueryParameters queryParameters: QParameters?,
         andHeaders headers: Headers?
     ) throws -> RequestProtocol
 }
@@ -46,17 +46,17 @@ public struct NetworkRequestFactory: NetworkRequestFactoryProtocol {
         )
     }
 
-    public func post<T: RequestParametersProtocol>(
+    public func post<BParameters: RequestParametersProtocol, QParameters: RequestParametersProtocol>(
         url: URL,
-        withBodyParameters bodyParameters: T?,
-        withQueryParameters queryParameters: T?,
+        withBodyParameters bodyParameters: BParameters?,
+        withQueryParameters queryParameters: QParameters?,
         andHeaders headers: Headers?
     ) throws -> RequestProtocol {
         try PostRequest(
             url: url,
             session: session,
-            bodyParameters: bodyParameters,
-            queryParameters: queryParameters,
+            withBodyParameters: bodyParameters,
+            withQueryParameters: queryParameters,
             headers: headers
         )
     }

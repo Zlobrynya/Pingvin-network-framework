@@ -20,11 +20,11 @@ public class PostRequest: RequestProtocol {
 
     // MARK: - Lifecycle
 
-    public init<Parameters: RequestParametersProtocol>(
+    public init<BParameters: RequestParametersProtocol, QParameters: RequestParametersProtocol>(
         url: URL,
         session: URLSessionProtocol,
-        bodyParameters: Parameters? = nil,
-        queryParameters: Parameters? = nil,
+        withBodyParameters bodyParameters: BParameters?,
+        withQueryParameters queryParameters: QParameters?,
         headers: Headers? = nil,
         encoder: JSONEncoder = JSONEncoder()
     ) throws {
