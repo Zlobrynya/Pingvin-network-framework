@@ -14,7 +14,13 @@ public protocol NetworkServiceProtocol {
         withParameters parameters: Parameters?,
         andHeaders headers: Headers?
     ) async throws -> T?
-    
+
+    func get<Parameters: RequestParametersProtocol>(
+        forUrl url: URL,
+        withParameters parameters: Parameters?,
+        andHeaders headers: Headers?
+    ) async throws -> Data?
+
     func post<T: Decodable, Parameters: RequestParametersProtocol>(
         forModel model: T.Type,
         forUrl url: URL,
@@ -22,10 +28,17 @@ public protocol NetworkServiceProtocol {
         withQueryParameters parameters: Parameters?,
         andHeaders headers: Headers?
     ) async throws -> T?
+
+    func post<Parameters: RequestParametersProtocol>(
+        forUrl url: URL,
+        withBodyParameters parameters: Parameters?,
+        withQueryParameters parameters: Parameters?,
+        andHeaders headers: Headers?
+    ) async throws -> Data?
 }
 
 public extension NetworkServiceProtocol {
-    
+
     func get<T: Decodable, Parameters: RequestParametersProtocol>(
         forModel model: T.Type,
         forUrl url: URL,
@@ -77,12 +90,11 @@ public struct NetworkService: NetworkServiceProtocol {
         withParameters parameters: Parameters?,
         andHeaders headers: Headers?
     ) async throws -> T? {
-        let request = try networkFactory.get(url: url, parameters: parameters, headers: headers)
-        let data = try await request.send()
-        let object = try jsonDecoder.decode(model, from: data)
-        return object
+        guard let data = try await get(forUrl: url, withParameters: parameters, andHeaders: headers)
+        else { throw NetworkingError.wrongUrl }
+        return try jsonDecoder.decode(model, from: data)
     }
-    
+
     public func post<T: Decodable, Parameters: RequestParametersProtocol>(
         forModel model: T.Type,
         forUrl url: URL,
@@ -90,15 +102,37 @@ public struct NetworkService: NetworkServiceProtocol {
         withQueryParameters queryParameters: Parameters?,
         andHeaders headers: Headers?
     ) async throws -> T? {
+        guard let data = try await post(
+            forUrl: url,
+            withBodyParameters: bodyParameters,
+            withQueryParameters: queryParameters,
+            andHeaders: headers
+        )
+        else { throw NetworkingError.somethingHappened }
+        return try jsonDecoder.decode(model, from: data)
+    }
+
+    public func get<Parameters: RequestParametersProtocol>(
+        forUrl url: URL,
+        withParameters parameters: Parameters?,
+        andHeaders headers: Headers?
+    ) async throws -> Data? {
+        let request = try networkFactory.get(url: url, parameters: parameters, headers: headers)
+        return try await request.send()
+    }
+
+    public func post<Parameters: RequestParametersProtocol>(
+        forUrl url: URL,
+        withBodyParameters bodyParameters: Parameters?,
+        withQueryParameters queryParameters: Parameters?,
+        andHeaders headers: Headers?
+    ) async throws -> Data? {
         let request = try networkFactory.post(
             url: url,
             withBodyParameters: bodyParameters,
             withQueryParameters: queryParameters,
             andHeaders: headers
         )
-        let data = try await request.send()
-        let object = try jsonDecoder.decode(model, from: data)
-        return object
+        return try await request.send()
     }
- 
 }
