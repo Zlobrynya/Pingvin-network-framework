@@ -12,7 +12,7 @@ public class PostRequest: RequestProtocol {
     // MARK: - Private properties
     
     private let request: URLRequest
-    private var task: Task.Handle<Data, Error>?
+    private var task: Task<Data, Error>?
 
     // MARK: - External Dependencies
 
@@ -53,11 +53,11 @@ public class PostRequest: RequestProtocol {
     // MARK: - Public functions
 
     public func send() async throws -> Data {
-        task = async { () -> Data in
+        task = Task { () -> Data in
             try await session.data(for: request)
         }
         guard let task = task else { throw NetworkingError.emptyResponse }
-        return try await task.get()
+        return try await task.value
     }
     
     public func cancel() {

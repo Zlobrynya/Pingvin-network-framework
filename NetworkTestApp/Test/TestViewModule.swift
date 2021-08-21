@@ -18,7 +18,7 @@ class Test {
         let url = URL(string: "https://animechan.vercel.app/api/quotes/anime")!
         let headers = ["Content-Type": "application/json"]
         let networkService = NetworkService()
-        async {
+        Task {
             do {
                 let obj = try await networkService.get(
                     forModel: [Response].self,
