@@ -33,9 +33,9 @@ public class PostRequest: RequestProtocol {
         guard var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true)
         else { throw NetworkingError.wrongUrl }
 
-        if let parameters = queryParameters {
-            urlComponents.queryItems = parameters.toQueryItem()
-        }
+//        if let parameters = queryParameters, !(bodyParameters is EmptyParameters) {
+//            urlComponents.queryItems = parameters.toQueryItem()
+//        }
 
         guard let url = urlComponents.url else { throw NetworkingError.wrongUrl }
         
