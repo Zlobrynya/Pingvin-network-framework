@@ -11,7 +11,7 @@ public class PostRequest: RequestProtocol {
  
     // MARK: - Private properties
     
-    private let request: URLRequest
+    public let request: URLRequest
     private var task: Task<Data, Error>?
 
     // MARK: - External Dependencies
@@ -33,16 +33,16 @@ public class PostRequest: RequestProtocol {
         guard var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true)
         else { throw NetworkingError.wrongUrl }
 
-        if let parameters = queryParameters {
-            urlComponents.queryItems = parameters.toQueryItem()
-        }
+//        if let parameters = queryParameters, !(bodyParameters is EmptyParameters) {
+//            urlComponents.queryItems = parameters.toQueryItem()
+//        }
 
         guard let url = urlComponents.url else { throw NetworkingError.wrongUrl }
         
         var request = URLRequest(url: url)
         request.httpMethod = RequestType.post.rawValue
         if let parameters = bodyParameters {
-            request.httpBody = try encoder.encode(parameters)
+            request.httpBody = parameters.toBody()
         }
             
         headers?.forEach { request.setValue($0.value, forHTTPHeaderField: $0.key) }
