@@ -42,7 +42,7 @@ public class PostRequest: RequestProtocol {
         var request = URLRequest(url: url)
         request.httpMethod = RequestType.post.rawValue
         if let parameters = bodyParameters {
-            request.httpBody = try encoder.encode(parameters)
+            request.httpBody = parameters.toBody()
         }
             
         headers?.forEach { request.setValue($0.value, forHTTPHeaderField: $0.key) }
