@@ -11,7 +11,7 @@ public class PostRequest: RequestProtocol {
  
     // MARK: - Private properties
     
-    private let request: URLRequest
+    let request: URLRequest
     private var task: Task<Data, Error>?
 
     // MARK: - External Dependencies
