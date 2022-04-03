@@ -3,21 +3,21 @@
 //  NetworkFramework
 //
 //  Created by Nikita Nikitin on 18.04.2021.
-// 
+//
 
 import Foundation
 
 public protocol NetworkRequestFactoryProtocol {
-    func get<T: RequestParametersProtocol>(url: URL, parameters: T?, headers: Headers?) throws -> RequestProtocol
+    typealias Parameters = RequestParametersProtocol
 
-    func post<BParameters: RequestParametersProtocol, QParameters: RequestParametersProtocol>(
-        url: URL,
-        withBodyParameters bodyParameters: BParameters?,
-        withQueryParameters queryParameters: QParameters?,
-        andHeaders headers: Headers?
+    func request<QueryParameters: Parameters, BodyParameters: Parameters>(
+        _ url: String,
+        method: RequestType,
+        queryParameters: QueryParameters,
+        bodyParameters: BodyParameters,
+        headers: Headers?
     ) throws -> RequestProtocol
 }
-
 
 public struct NetworkRequestFactory: NetworkRequestFactoryProtocol {
 
@@ -33,30 +33,19 @@ public struct NetworkRequestFactory: NetworkRequestFactoryProtocol {
 
     // MARK: - Public functions
 
-    public func get<T: RequestParametersProtocol>(
-        url: URL,
-        parameters: T?,
+    public func request<QueryParameters: Parameters, BodyParameters: Parameters>(
+        _ url: String,
+        method: RequestType,
+        queryParameters: QueryParameters,
+        bodyParameters: BodyParameters,
         headers: Headers?
     ) throws -> RequestProtocol {
-        try GetRequest(
+        try Request(
             url: url,
             session: session,
-            parameters: parameters,
-            headers: headers
-        )
-    }
-
-    public func post<BParameters: RequestParametersProtocol, QParameters: RequestParametersProtocol>(
-        url: URL,
-        withBodyParameters bodyParameters: BParameters?,
-        withQueryParameters queryParameters: QParameters?,
-        andHeaders headers: Headers?
-    ) throws -> RequestProtocol {
-        try PostRequest(
-            url: url,
-            session: session,
-            withBodyParameters: bodyParameters,
-            withQueryParameters: queryParameters,
+            type: method,
+            bodyParameters: bodyParameters,
+            queryParameters: queryParameters,
             headers: headers
         )
     }
