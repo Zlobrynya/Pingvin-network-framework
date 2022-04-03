@@ -36,6 +36,6 @@ public extension RequestParametersProtocol {
     func toBody() -> Data? {
         let mirror = Mirror(reflecting: self)
         let dictionary = mirror.toDictionary(type: Self.caseType)
-        return try? JSONSerialization.data(withJSONObject: parameterDictionary, options: [])
+        return try? JSONSerialization.data(withJSONObject: dictionary, options: [])
     }
 }
