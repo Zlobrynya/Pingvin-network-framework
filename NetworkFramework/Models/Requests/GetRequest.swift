@@ -7,68 +7,55 @@
 
 import Foundation
 
-enum RequestType: String {
-    case get = "GET"
-    case post = "POST"
-    case put = "PUT"
-}
-
 public class GetRequest: RequestProtocol {
 
     // MARK: - Private properties
-    
+
     private let request: URLRequest
-    private var task: URLSessionDataTask?
+    private var task: Task<Data, Error>?
 
     // MARK: - External Dependencies
 
     private let session: URLSessionProtocol
-    private var resultHandler: NetworkResultHandler?
 
     // MARK: - Lifecycle
 
-    public init?<Parameters: RequestParametersProtocol>(
+    public init<Parameters: RequestParametersProtocol>(
         url: URL,
         session: URLSessionProtocol,
         parameters: Parameters? = nil,
-        headers: Headers? = nil,
-        resultHandler: NetworkResultHandler? = nil,
-        encoder: JSONEncoder = JSONEncoder()
-    ) {
+        headers: Headers? = nil
+    ) throws {
         self.session = session
-        self.resultHandler = resultHandler
-        guard var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true) else {
-            return nil
-        }
-        
+        guard var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true)
+        else { throw NetworkingError.wrongUrl }
+
         if let parameters = parameters {
-            urlComponents.queryItems = parameters.toQueryItem(with: encoder)
+            urlComponents.queryItems = parameters.toQueryItem()
         }
-        guard let url = urlComponents.url else {
-            return nil
-        }
-        
+
+        guard let url = urlComponents.url else { throw NetworkingError.wrongUrl }
+
         var request = URLRequest(url: url)
         request.httpMethod = RequestType.get.rawValue
         headers?.forEach {
             request.setValue($0.value, forHTTPHeaderField: $0.key)
         }
-        
+
         self.request = request
     }
 
     // MARK: - Public functions
 
-    public func send() {
-        let resultHandler = self.resultHandler
-        task = session.dataTask(
-            with: request,
-            errorHandler: { resultHandler?.requestFaildWithError($0) },
-            resultHandler: { resultHandler?.requestSuccessfulWithResult($0) }
-        )
-        task?.resume()
+    // line by line https://developer.apple.com/videos/play/wwdc2021/10095/
+    public func send() async throws -> Data {
+        task = Task { () -> Data in
+            try await session.data(for: request)
+        }
+        guard let task = task else { throw NetworkingError.emptyResponse }
+        return try await task.value
     }
-    
+
     public func cancel() {
         task?.cancel()
     }

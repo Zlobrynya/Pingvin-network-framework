@@ -11,7 +11,7 @@ public protocol RequestProtocol {
     ///  <#Description#>
     ///
     /// - Parameter <#Name Parameter#>: <#Parameter Description#>
-    func send()
+    func send() async throws -> Data
     
     func cancel()
 }
