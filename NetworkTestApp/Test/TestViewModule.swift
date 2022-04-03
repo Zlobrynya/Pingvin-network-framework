@@ -10,22 +10,17 @@ import SwiftUI
 
 class Test {
 
-    var requst: GetRequest?
+    var requst: Request?
     let network: NetworkRequestFactoryProtocol = NetworkRequestFactory()
 
     func testNetwork() {
         let mock = MockParameter()
-        let url = URL(string: "https://animechan.vercel.app/api/quotes/anime")!
+        let url = "https://animechan.vercel.app/api/quotes/anime"
         let headers = ["Content-Type": "application/json"]
-        let networkService = NetworkService()
+        let networkService: NetworkServiceProtocol = NetworkService()
         Task {
             do {
-                let obj = try await networkService.get(
-                    forModel: [Response].self,
-                    forUrl: url,
-                    withParameters: mock,
-                    andHeaders: headers
-                )
+                let obj = try await networkService.request(url, method: .get, headers: headers, responceType: [Response].self)
                 debugPrint("❤️ obj \(obj)")
             } catch {
                 debugPrint("❤️ error \(error)")
@@ -41,10 +36,10 @@ class Test {
 
 struct MockParameter: RequestParametersProtocol {
     static var caseType: CaseTypes = .kebabCase
-    
+
     let title = "naruto"
     let keyTest = Test()
-    
+
     struct Test: Encodable {
         let testIn = "testIn"
     }

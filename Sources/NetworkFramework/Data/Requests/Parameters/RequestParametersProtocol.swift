@@ -7,20 +7,6 @@
 
 import Foundation
 
-public enum CaseTypes: Encodable {
-    case camelCase
-    case snakeCase
-    case kebabCase
-
-    var rawValue: String {
-        switch self {
-        case .camelCase: return ""
-        case .snakeCase: return "_"
-        case .kebabCase: return "-"
-        }
-    }
-}
-
 public protocol RequestParametersProtocol: Encodable {
     static var caseType: CaseTypes { get }
 }
@@ -33,9 +19,9 @@ public extension RequestParametersProtocol {
             .map { URLQueryItem(name: $0.key, value: $0.value) }
     }
     
-    func toBody() -> Data? {
+    func toHttpBody() throws -> Data  {
         let mirror = Mirror(reflecting: self)
         let dictionary = mirror.toDictionary(type: Self.caseType)
-        return try? JSONSerialization.data(withJSONObject: dictionary, options: [])
+        return try JSONSerialization.data(withJSONObject: dictionary, options: [])
     }
 }
